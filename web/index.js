@@ -5,7 +5,7 @@ login.addEventListener('click', e => {
     e.preventDefault();
 });
 
-function enviar() {
+function fazerLogin() {
     senha = document.getElementById('pin').value;
     fetch(uri, {
         method: 'POST',

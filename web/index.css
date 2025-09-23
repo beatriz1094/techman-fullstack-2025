@@ -68,3 +68,14 @@ main {
     background-color: var(--color5);
     color: var(--color2);
 }
+
+.teclado button[disabled]{
+    color:#ccc;
+    border-color: #ccc;
+}
+
+.teclado button[disabled]:hover{
+    color:#fff;
+    border-color: #ccc;
+    background-color: #ccc;
+}
