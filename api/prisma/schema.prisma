@@ -18,7 +18,7 @@ model Usuario {
   id     Int    @id @default(autoincrement())
   senha  String @db.VarChar(50)
   perfil Int
-  possui Perfil @relation(fields: [perfil], references: [id])
+  usuarioPerfil Perfil @relation(fields: [perfil], references: [id])
 }
 
 model Equipamento {
@@ -37,6 +37,6 @@ model Comentario {
   equipamento Int
   perfil      Int
   data        DateTime    @default(now())
-  faz         Perfil      @relation(fields: [perfil], references: [id])
-  recebe      Equipamento @relation(fields: [equipamento], references: [id], onDelete: Cascade)
+  comentarioPerfil         Perfil      @relation(fields: [perfil], references: [id])
+  comentarioEquipamento      Equipamento @relation(fields: [equipamento], references: [id], onDelete: Cascade)
 }

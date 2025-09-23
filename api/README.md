@@ -10,7 +10,7 @@ API Techman
 2. Rode `npm install` para instalar as dependências
 3. Crie um arquivo `.env` com o conteúdo a seguir:
 ```js
-DATABASE_URL="mysql://root:password@localhost:3306/techman"
+DATABASE_URL="mysql://root@localhost:3306/techman"
 ```
 4. De start no SGBD MySQL
 5. Rode `npx prisma migrate dev --name init` para criar as tabelas no banco de dados.
