@@ -10,8 +10,10 @@ const comentariosData = fs.readFileSync('./prisma/data/comentarios.csv', 'utf8')
 
 // Funções para inserir os dados em cada tabela
 async function inserePerfis() {
-    perfisData.split('\r\n').map(async (linha, i) => {
-        if (i > 0) { //ignora a primeira linha
+    const linhas = perfisData.split('\r\n');
+    for (let i = 1; i < linhas.length; i++) { // ignora a primeira linha
+        const linha = linhas[i];
+        if (linha.trim()) { // verifica se a linha não está vazia
             const [id, perfil] = linha.split(';');
             await prisma.perfil.create({
                 data: {
@@ -20,12 +22,14 @@ async function inserePerfis() {
                 }
             });
         }
-    });
+    }
 }
 
 async function insereUsuarios() {
-    usuariosData.split('\r\n').map(async (linha, i) => {
-        if (i > 0) { //ignora a primeira linha
+    const linhas = usuariosData.split('\r\n');
+    for (let i = 1; i < linhas.length; i++) { // ignora a primeira linha
+        const linha = linhas[i];
+        if (linha.trim()) { // verifica se a linha não está vazia
             const [id, senha, perfil] = linha.split(';');
             await prisma.usuario.create({
                 data: {
@@ -35,12 +39,14 @@ async function insereUsuarios() {
                 }
             });
         }
-    });
+    }
 }
 
 async function insereEquipamentos() {
-    equipamentosData.split('\r\n').map(async (linha, i) => {
-        if (i > 0) { //ignora a primeira linha
+    const linhas = equipamentosData.split('\r\n');
+    for (let i = 1; i < linhas.length; i++) { // ignora a primeira linha
+        const linha = linhas[i];
+        if (linha.trim()) { // verifica se a linha não está vazia
             const [id, equipamento, imagem, descricao, ativo, data] = linha.split(';');
             await prisma.equipamento.create({
                 data: {
@@ -53,12 +59,14 @@ async function insereEquipamentos() {
                 }
             });
         }
-    });
+    }
 }
 
 async function insereComentarios() {
-    comentariosData.split('\r\n').map(async (linha, i) => {
-        if (i > 0) { //ignora a primeira linha
+    const linhas = comentariosData.split('\r\n');
+    for (let i = 1; i < linhas.length; i++) { // ignora a primeira linha
+        const linha = linhas[i];
+        if (linha.trim()) { // verifica se a linha não está vazia
             const [id, comentario, equipamento, perfil, data] = linha.split(';');
             await prisma.comentario.create({
                 data: {
@@ -70,15 +78,26 @@ async function insereComentarios() {
                 }
             });
         }
-    });
+    }
 }
 
-//Implementa a função main que insere os dados wm ordem sequencial
+//Implementa a função main que insere os dados em ordem sequencial
 async function main() {
+    console.log('Iniciando inserção de dados...');
+    
+    console.log('Inserindo perfis...');
     await inserePerfis();
+    
+    console.log('Inserindo usuários...');
     await insereUsuarios();
+    
+    console.log('Inserindo equipamentos...');
     await insereEquipamentos();
+    
+    console.log('Inserindo comentários...');
     await insereComentarios();
+    
+    console.log('Dados inseridos com sucesso!');
 }
 
 //Executando a função main

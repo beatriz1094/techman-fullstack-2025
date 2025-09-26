@@ -1,5 +1,15 @@
 const uri = "http://localhost:3000/login";
 const login = document.getElementById('login');
+const userTechman = window.localStorage.getItem("usertechman");
+
+if (userTechman) {
+    const user = JSON.parse(userTechman);
+    if (user && user.id) {
+        window.location.href = '../home/';
+    } else {
+        window.localStorage.removeItem("usertechman");
+    }
+}
 
 login.addEventListener('click', e => {
     e.preventDefault();
@@ -25,7 +35,7 @@ function fazerLogin() {
         .then(data => {
             if (data) {
                 window.localStorage.setItem("usertechman", JSON.stringify(data));
-                window.location.href = './home.html';
+                window.location.href = '../home/';
                 remove();
             }
         })
