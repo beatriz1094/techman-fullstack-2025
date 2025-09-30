@@ -40,7 +40,7 @@ function listarEquipamentos() {
                 if (user.perfil == 2)
                     card.innerHTML = `
                     <div>
-                        <img class="ilustracao" src="../assets/${e.imagem}" alt="imagem do equipamento">
+                        <img class="ilustracao" src="${e.imagem.slice(0,4)=='http'?e.imagem:`../assets/${e.imagem}`}" alt="imagem do equipamento">
                     </div>
                     <div>
                         <h2>${e.equipamento}</h2>
